@@ -79,7 +79,6 @@ int main(void)
             printf("프로그램 종료\n");
             return 0;
         }
-
         DrawBoard(current_board);
     }
 
@@ -130,7 +129,6 @@ void DrawBoard(int** p)
         printf("\n");
     }
 }
-
 void Shuffle(int** p)
 {
     int moves1 = 100;
@@ -169,33 +167,3 @@ void Swap(int* x, int* y)
     *y = temp;
 }
 
-int CheckSuccess(void)
-{
-    for (int i = 0; i < size; i++)
-    {
-        for (int j = 0; j < size; j++)
-        {
-            if (current_board[i][j] != target_board[i][j])
-                return 0;
-        }
-    }
-    return 1;
-}
-
-int GetKey(void)
-{
-    int ch = _getch();
-
-    if (ch == 0 || ch == 224)
-        // 방향키의 경우 0 또는 224의 값이 먼저 입력됨
-        ch = 256 + _getch();
-    // 그 다음에 해당 방향키에 따라 72(Up), 
-    // 80(Down), 75(Left), 77(Right) 값이 입력됨
-    return ch;
-}
-
-void SetCursorVisible(int visible)
-{
-    CONSOLE_CURSOR_INFO ci = { 100, visible };
-    SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &ci);
-}
